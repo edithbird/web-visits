@@ -27,41 +27,105 @@ ga_auth()
 my_accounts <- ga_account_list()
 View(my_accounts)
 ga_id <- 63145830
-ga_id_2 <- 50446675
+
 
 start_date <- "2019-03-02"
 end_date <-  Sys.Date()
 
 GA_thisWk <- google_analytics(ga_id, date_range = c(start_date, end_date), 
                                 metrics = c("pageviews"), 
-                                dimensions = c("pageTitle"), 
+                                dimensions = c("pageTitle", "pagePathLevel1"), 
                                 #dim_filters = my_filter_clause,
                                 anti_sample = TRUE
                                 )
 
 ExcludeInternal <- GA_thisWk %>% arrange(desc(pageviews))
-write.csv(ExcludeInternal, "C:/Users/christine.iyer/Box/WebVisits/Data/ExcludeInternal.csv", row.names = T)
+write.csv(ExcludeInternal, "C:/Users/christine.iyer/Box/WebVisits/Data/ExcludeInternal_Path.csv", row.names = T)
+
+dim(ExcludeInternal)
+```
 
 
+```{r eval=FALSE, include=FALSE}
+ga_id_2 <- 50446675
+GA_thisWk_I <- google_analytics(ga_id_2, date_range = c(start_date, end_date), 
+                                metrics = c("pageviews"), 
+                                dimensions = c("pageTitle", "pagePathLevel1"), 
+                                #dim_filters = my_filter_clause,
+                                anti_sample = TRUE
+                                )
+
+IncludeInternal <- GA_thisWk_I %>% arrange(desc(pageviews))
+write.csv(IncludeInternal, "C:/Users/christine.iyer/Box/WebVisits/Data/IncludeInternal_Path.csv", row.names = T)
+dim(IncludeInternal)
 ```
 
 ```{r}
-IncludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/IncludeInternal.csv", header = T, stringsAsFactors = F)
-ExcludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/ExcludeInternal.csv", header = T, stringsAsFactors = F)
+IncludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/IncludeInternal_Path.csv", header = T, stringsAsFactors = F)
+ExcludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/ExcludeInternal_Path.csv", header = T, stringsAsFactors = F)
 ```
 
 ## Audience {.tabset}
 
-### Includes Internal Web Traffic
+### By Page Title Includes Internal Web Traffic
 
 ```{r}
-IncludeInternal <- IncludeInternal %>% filter(pageviews<100) %>% select(-X) %>% arrange(pageviews)
-reactable(IncludeInternal, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+
+IncludeInternal_title <- IncludeInternal %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews)  
+reactable(IncludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
-### Excludes Internal Web Traffic
+### By Page Title Excludes Internal Web Traffic
 
 ```{r}
-ExcludeInternal <- ExcludeInternal %>% filter(pageviews<100) %>% select(-X) %>% arrange(pageviews)
-reactable(ExcludeInternal, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+ExcludeInternal_title <- ExcludeInternal %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews) 
+reactable(ExcludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
+
+### By URL Includes Internal Web Traffic
+
+```{r}
+IncludeInternal_URL <- IncludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews) 
+reactable(IncludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
+### By URL Excludes Internal Web Traffic
+
+```{r}
+ExcludeInternal_URL <- ExcludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews) 
+reactable(ExcludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
+### By Page Title Includes Internal Web Traffic
+
+```{r}
+IncludeInternal_title <- IncludeInternal  %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews))  %>% arrange(pageviews) 
+reactable(IncludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
+### By Page Title Excludes Internal Web Traffic
+
+```{r}
+ExcludeInternal_title <- ExcludeInternal  %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews))  %>% arrange(pageviews) 
+reactable(ExcludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
+### By URL Includes Internal Web Traffic
+
+```{r}
+IncludeInternal_URL <- IncludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% arrange(pageviews) 
+reactable(IncludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
+### By URL Excludes Internal Web Traffic
+
+```{r}
+ExcludeInternal_URL <- ExcludeInternal  %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% arrange(pageviews) 
+reactable(ExcludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
+```{r}
+# ExcludeInternal_URL_Group <- ExcludeInternal  %>% group_by(pagePathLevel1) %>% summarise(Pageviews = sum(pageviews))  %>% arrange(pageviews)
+# reactable(ExcludeInternal_URL_Group, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
