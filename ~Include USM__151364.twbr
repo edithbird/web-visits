@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20201.20.0518.1719                               -->
+<workbook source-build='2020.1.4 (20201.20.0518.1719)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+  </document-format-change-manifest>
+  <repository-location id='GoogleAnalyticsPageswith100orFewerPageviewssince312019' path='/workbooks' revision='1.3' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Google Analytics (usm.maine.edu    (25696691))' inline='true' name='google-analytics.1mga7m90c6hyth177xt1g1sx8zdr' version='18.1'>
+      <connection REDIRECT_URI='urn:ietf:wg:oauth:2.0:oob' SCOPE='email profile https://www.googleapis.com/auth/analytics.readonly' account-id='25696691' account-name='usm.maine.edu    (25696691)' can-partition='yes' class='google-analytics' currency='' date-type='12' dimensions='ga:pageTitle' end-date='2020-06-18' goal-name-ids='' incremental-refresh-enabled='false' metrics='ga:pageviews' profile-id='50446675' profile-name='usm.maine.edu    (50446675)' property-id='UA-25696691-1' property-name='http://usm.maine.edu    (UA-25696691-1)    http://usm.maine.edu' request-unsampling='yes' response-sampled='no' sample-size='-1' sample-space='-1' sampled-data='no' segment-id='-1' segment-name='All Visits    (-1)' server-oauth='' start-date='2019-03-01' total-results='22763' username='ads.usm@gmail.com' workgroup-auth-mode='as-is'>
+        <refresh increment-key='' incremental-updates='false' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>ga:pageTitle</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ga:pageTitle]</local-name>
+            <remote-alias>ga:pageTitle</remote-alias>
+            <caption>Page Title</caption>
+            <local-type>string</local-type>
+            <aggregation>None</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='comment'>&quot;The page&apos;s title. Multiple pages might have the same page title.&quot;</attribute>
+              <attribute datatype='boolean' name='dimension'>true</attribute>
+              <attribute datatype='string' name='geography'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='null_mapping'>&quot;(not set)&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='measure'>
+            <remote-name>ga:pageviews</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ga:pageviews]</local-name>
+            <remote-alias>ga:pageviews</remote-alias>
+            <caption>Pageviews</caption>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='comment'>&quot;The total number of pageviews for the property.&quot;</attribute>
+              <attribute datatype='boolean' name='dimension'>false</attribute>
+              <attribute datatype='string' name='geography'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='null_mapping'>&quot;(not set)&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='sampled-data'>
+            <remote-name>sampled-data</remote-name>
+            <remote-type>0</remote-type>
+            <remote-alias>sampled-data</remote-alias>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='response-sampled'>&quot;FALSE&quot;</attribute>
+              <attribute datatype='string' name='sample-size'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='sample-space'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='total-results'>&quot;22763&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Measure Names' datatype='string' name='[:Measure Names]' role='dimension' type='nominal' />
+      <column caption='Row Number' datatype='string' datatype-customized='true' name='[Calculation_-7795449416441565183]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='STR(INDEX())'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Measure Values' datatype='real' name='[Multiple Values]' role='measure' type='quantitative' />
+      <column caption='Number of Records' datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column aggregation='None' caption='Page Title' datatype='string' name='[ga:pageTitle]' role='dimension' type='nominal' />
+      <column caption='Pageviews' datatype='integer' name='[ga:pageviews]' role='measure' type='quantitative' />
+      <extract count='-1' enabled='false' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='C:/Users/christine.iyer/Documents/My Tableau Repository/Datasources/google-analytics.1mga7m90c6hyth177xt1g1sx8zdr_181l6i90bakz8i1947hz80lwlf7r.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>ga:pageTitle</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ga:pageTitle]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ga:pageTitle</remote-alias>
+              <ordinal>0</ordinal>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>22763</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LROOT' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ga:pageviews</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[ga:pageviews]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ga:pageviews</remote-alias>
+              <ordinal>1</ordinal>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1041</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.489924' measure-ordering='alphabetic' measure-percentage='0.510076' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontname='Tableau Bold'>Less than 100 Pageviews since 3/1/2019</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Google Analytics (usm.maine.edu    (25696691))' name='google-analytics.1mga7m90c6hyth177xt1g1sx8zdr' />
+          </datasources>
+          <datasource-dependencies datasource='google-analytics.1mga7m90c6hyth177xt1g1sx8zdr'>
+            <column caption='Row Number' datatype='string' datatype-customized='true' name='[Calculation_-7795449416441565183]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='STR(INDEX())'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column aggregation='None' caption='Page Title' datatype='string' name='[ga:pageTitle]' role='dimension' type='nominal' />
+            <column caption='Pageviews' datatype='integer' name='[ga:pageviews]' role='measure' type='quantitative' />
+            <column-instance column='[ga:pageTitle]' derivation='None' name='[none:ga:pageTitle:nk]' pivot='key' type='nominal' />
+            <column-instance column='[ga:pageviews]' derivation='Sum' name='[sum:ga:pageviews:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_-7795449416441565183]' derivation='User' name='[usr:Calculation_-7795449416441565183:nk]' pivot='key' type='nominal'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+          </datasource-dependencies>
+          <computed-sort column='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[none:ga:pageTitle:nk]' direction='DESC' using='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[sum:ga:pageviews:qk]' />
+          <filter class='quantitative' column='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[sum:ga:pageviews:qk]' included-values='in-range'>
+            <max>100</max>
+          </filter>
+          <slices>
+            <column>[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[sum:ga:pageviews:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='header'>
+            <format attr='width' field='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[none:ga:pageTitle:nk]' value='324' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='font-size' value='8' />
+            <format attr='color' value='#000000' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[sum:ga:pageviews:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[usr:Calculation_-7795449416441565183:nk] / [google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[none:ga:pageTitle:nk])</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{827DFA33-904B-41E6-A187-FC91F9AAD610}' />
+    </worksheet>
+    <worksheet name='Sheet 2'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontname='Tableau Bold'>All Pages Visited</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Google Analytics (usm.maine.edu    (25696691))' name='google-analytics.1mga7m90c6hyth177xt1g1sx8zdr' />
+          </datasources>
+          <datasource-dependencies datasource='google-analytics.1mga7m90c6hyth177xt1g1sx8zdr'>
+            <column caption='Row Number' datatype='string' datatype-customized='true' name='[Calculation_-7795449416441565183]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='STR(INDEX())'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column aggregation='None' caption='Page Title' datatype='string' name='[ga:pageTitle]' role='dimension' type='nominal' />
+            <column caption='Pageviews' datatype='integer' name='[ga:pageviews]' role='measure' type='quantitative' />
+            <column-instance column='[ga:pageTitle]' derivation='None' name='[none:ga:pageTitle:nk]' pivot='key' type='nominal' />
+            <column-instance column='[ga:pageviews]' derivation='Sum' name='[sum:ga:pageviews:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_-7795449416441565183]' derivation='User' name='[usr:Calculation_-7795449416441565183:nk]' pivot='key' type='nominal'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+          </datasource-dependencies>
+          <computed-sort column='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[none:ga:pageTitle:nk]' direction='DESC' using='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[sum:ga:pageviews:qk]' />
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='header'>
+            <format attr='width' field='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[none:ga:pageTitle:nk]' value='296' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[sum:ga:pageviews:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[usr:Calculation_-7795449416441565183:nk] / [google-analytics.1mga7m90c6hyth177xt1g1sx8zdr].[none:ga:pageTitle:nk])</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{CB892033-5938-4A16-AD56-4FDBD10890E4}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Dashboard 1'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='98125' id='5' name='Sheet 2' w='47000' x='52500' y='125' />
+        <zone h='97625' id='8' name='Sheet 1' w='49900' x='800' y='875' />
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='12' type='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='11' param='vert' type='layout-flow' w='98400' x='800' y='1000'>
+                <zone fixed-size='280' h='98125' id='5' is-fixed='true' name='Sheet 2' w='47000' x='52500' y='125'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='97625' id='8' is-fixed='true' name='Sheet 1' w='49900' x='800' y='875'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{03E3B0E7-A643-4DBD-9F96-48422B141C41}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{F758EB28-11F7-4C4D-AE64-35966521A57E}' />
+    </window>
+    <window class='worksheet' name='Sheet 2'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{6A628DFB-C39A-4CF6-84BC-46C7FDB2706F}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='Sheet 1' />
+        <viewpoint name='Sheet 2' />
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{448B3069-66C1-4877-9882-35A33FB55585}' />
+    </window>
+  </windows>
+</workbook>

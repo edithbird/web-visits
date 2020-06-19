@@ -1,0 +1,67 @@
+---
+title: "Web Pages with Less than 100 Pageviews since March 1, 2019"
+author: "Office of Marketing and Brand Management"
+date: "6/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r}
+library(reactable)
+library(tidyverse)
+```
+
+
+
+```{r auth and account, eval=FALSE, include=FALSE}
+### Exclude Internal Traffic
+library(googleAnalyticsR)
+ga_auth()
+my_accounts <- ga_account_list()
+View(my_accounts)
+ga_id <- 63145830
+ga_id_2 <- 50446675
+
+start_date <- "2019-03-02"
+end_date <-  Sys.Date()
+
+GA_thisWk <- google_analytics(ga_id, date_range = c(start_date, end_date), 
+                                metrics = c("pageviews"), 
+                                dimensions = c("pageTitle"), 
+                                #dim_filters = my_filter_clause,
+                                anti_sample = TRUE
+                                )
+
+ExcludeInternal <- GA_thisWk %>% arrange(desc(pageviews))
+write.csv(ExcludeInternal, "C:/Users/christine.iyer/Box/WebVisits/Data/ExcludeInternal.csv", row.names = T)
+
+
+```
+
+```{r}
+IncludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/IncludeInternal.csv", header = T, stringsAsFactors = F)
+ExcludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/ExcludeInternal.csv", header = T, stringsAsFactors = F)
+```
+
+## Audience {.tabset}
+
+### Includes Internal Web Traffic
+
+```{r}
+IncludeInternal <- IncludeInternal %>% filter(pageviews<100) %>% select(-X) %>% arrange(pageviews)
+reactable(IncludeInternal, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
+
+### Excludes Internal Web Traffic
+
+```{r}
+ExcludeInternal <- ExcludeInternal %>% filter(pageviews<100) %>% select(-X) %>% arrange(pageviews)
+reactable(ExcludeInternal, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
+```
