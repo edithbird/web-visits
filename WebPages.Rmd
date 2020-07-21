@@ -61,66 +61,157 @@ dim(IncludeInternal)
 ```
 
 ```{r}
+string_UTM <- "/#utm_"
 IncludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/IncludeInternal_Path.csv", header = T, stringsAsFactors = F)
+IncludeInternal <- IncludeInternal %>% 
+  mutate(pagePathLevel1 = ifelse(grepl("^/courses?",pagePathLevel1), "/courses",ifelse(grepl("/excel-degree-completion?", pagePathLevel1), "/excel-degree-completion",ifelse(grepl("/excel-high-school", pagePathLevel1), "/excel-high-school-students",
+                                               ifelse(grepl("/here-high-school", pagePathLevel1), "/here-high-school-students",
+                                                      ifelse(grepl("/here-degree-completion", pagePathLevel1), "/here-degree-completion",
+                                                             ifelse(grepl("/excel-degree-completion?", pagePathLevel1), "/excel-degree-completion",
+                                        ifelse(grepl("/excel-online", pagePathLevel1), "/excel-online-degree-seekers",
+                                               ifelse(grepl("/everyone-online-", pagePathLevel1), "/everyone-online-degree-seekers",
+                                                      ifelse(grepl("/everyone-graduate", pagePathLevel1), "/everyone-graduate-degree-seekers",
+                                                             ifelse(grepl("/excel-graduate-", pagePathLevel1), "/excel-graduate-degree",
+                                                                    ifelse(grepl("/everyone-high-school-students", pagePathLevel1), "/everyone-high-school-students",
+                                                                           ifelse(grepl("/advance", pagePathLevel1), "/advance",
+                                                                                  ifelse(grepl("/scholarship", pagePathLevel1), "/scholarships",
+                                                                                         ifelse(grepl("/search", pagePathLevel1), "/search/",
+                                                                                                ifelse(grepl("/visi", pagePathLevel1), "/visit",
+                                                                                                       ifelse(grepl("/residential-life", pagePathLevel1), "/residential-life/",
+                                                                                                              ifelse(grepl("/public-serv", pagePathLevel1), "/public-service", 
+                                                                                                                     ifelse(grepl("accreditation", pagePathLevel1), "/accreditation",
+                                                                                                                                                                                      ifelse(grepl("/accelerated-graduate-pathways", pagePathLevel1), "/accelerated-graduate-pathways",
+                                                                                                                                                                                             ifelse(grepl("/admission", pagePathLevel1), "/admissions",
+                                                                                                                                                                                                    ifelse(grepl("/about", pagePathLevel1), "/about",
+                                                                                                                                                                                                           ifelse(grepl("/public-affairs", pagePathLevel1), "/public-affairs",
+                                                                                                                                                                                                                  ifelse(grepl("/public-health", pagePathLevel1), "/public-health",
+                                                                                                                                                                                                                         ifelse(grepl("/registration-services", pagePathLevel1), "/registration-services/",
+                                                                                                                                                                                                                                ifelse(grepl("/transitional-programs", pagePathLevel1), "/transitional-programs",
+                                                                                                                                                                                                                                       ifelse(grepl("/library", pagePathLevel1), "/library",
+                                                                                                                                                                                                                                              ifelse(grepl("/libraries", pagePathLevel1), "/library",
+                                                                                                                                                                                                                                                     ifelse(grepl("/public-serv", pagePathLevel1), "/public-service",
+                                                                                                                                                                                                                                                            ifelse(grepl("/osher-map-library", pagePathLevel1), "//osher-map-library",
+                                                                                                                                                                                                                                                                   ifelse(grepl("/commencement", pagePathLevel1), "/commencement",
+                                                                                                                                                                                                                                                                          ifelse(grepl("/commencent", pagePathLevel1), "/commencement",
+                                                                                                                                                                                                                                                                                 ifelse(grepl("/campus-life", pagePathLevel1), "/campus-life", 
+                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                              ifelse(grepl("/cce", pagePathLevel1), "/cce/", 
+                                                                                                                                                                                                     ifelse(grepl("/student-financial-services", pagePathLevel1), "/student-financial-services/" ,  
+                                                                                                                                                                                                            ifelse(grepl("/orientation.", pagePathLevel1), "/orientation", 
+                                                                                                                                                                                                                   ifelse(grepl("/activites", pagePathLevel1), "/activities",
+                                                                                                                                                                                                                          ifelse(grepl("/activities", pagePathLevel1), "/activities",
+                                                                                                                                                                                                                                 ifelse(grepl("/academic-departments", pagePathLevel1),"/academic-departments/", 
+                                                                                                                                                                                                                                        ifelse(grepl("/adult-education", pagePathLevel1),"/adult-education/",
+pagePathLevel1
+                                 )))))))))))))))))))))))))))))))))))))))) 
+  
+
+```
+
+
+```{r}
 ExcludeInternal <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/ExcludeInternal_Path.csv", header = T, stringsAsFactors = F)
+ExcludeInternal <- ExcludeInternal
 ```
 
 ## Audience {.tabset}
 
+
+
+```{r eval=FALSE, include=FALSE}
 ### By Page Title Includes Internal Web Traffic
-
-```{r}
-
-IncludeInternal_title <- IncludeInternal %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews)  
+IncludeInternal_title <- IncludeInternal %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100 & pageviews>10) %>% arrange(pageviews)  
 reactable(IncludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
-### By Page Title Excludes Internal Web Traffic
 
-```{r}
-ExcludeInternal_title <- ExcludeInternal %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews) 
+
+```{r  eval=FALSE, include=FALSE}
+### By Page Title Excludes Internal Web Traffic
+ExcludeInternal_title <- ExcludeInternal %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100 & pageviews>10) %>% arrange(pageviews) 
 reactable(ExcludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
-### By URL Includes Internal Web Traffic
 
-```{r}
-IncludeInternal_URL <- IncludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews) 
+
+```{r eval=FALSE, include=FALSE}
+### By URL Includes Internal Web Traffic
+IncludeInternal_URL <- IncludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100 & pageviews>10) %>% arrange(pageviews) 
 reactable(IncludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
-### By URL Excludes Internal Web Traffic
 
-```{r}
-ExcludeInternal_URL <- ExcludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100) %>% arrange(pageviews) 
+
+```{r eval=FALSE, include=FALSE}
+### By URL Excludes Internal Web Traffic
+ExcludeInternal_URL <- ExcludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews<100 & pageviews>10) %>% arrange(pageviews) 
 reactable(ExcludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
-### By Page Title Includes Internal Web Traffic
 
-```{r}
-IncludeInternal_title <- IncludeInternal  %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews))  %>% arrange(pageviews) 
+
+```{r  eval=FALSE, include=FALSE}
+### By Page Title Includes Internal Web Traffic
+IncludeInternal_title <- IncludeInternal  %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews>10)  %>% arrange(pageviews) 
 reactable(IncludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
-### By Page Title Excludes Internal Web Traffic
+c
 
-```{r}
-ExcludeInternal_title <- ExcludeInternal  %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews))  %>% arrange(pageviews) 
+```{r eval=FALSE, include=FALSE}
+### By Page Title Excludes Internal Web Traffi
+ExcludeInternal_title <- ExcludeInternal  %>% group_by(pageTitle) %>% summarise(pageviews = sum(pageviews)) %>% filter(pageviews>10) %>% arrange(pageviews) 
 reactable(ExcludeInternal_title, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
 ### By URL Includes Internal Web Traffic
 
+
+# /osher-map-library>/osher-map-library/
+# /commencent>/commencement/
+# /commencement> /commencement/
+# /campus-life>/campus-life/
+# /#utm>/#utm
+# /about>/about/
+# /activites/< /activities/
+# /activities>/activities/
+# /academic-departments>/academic-departments/
+# /adult-education>/adult-education/
+# /adult-e>/adult-education/
+# /advising>/advising/
+# /agile > /agile/
+# /arboretum.>/arboretum/
+# /arboretum>/arboretum/
+# /assessment/>/assesment
+# /assesment/>/assesment
+# /athl>/athl/
+
 ```{r}
-IncludeInternal_URL <- IncludeInternal %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% arrange(pageviews) 
+
+IncludeInternal_URL <- IncludeInternal %>% 
+  
+                             #    
+                            
+  group_by(pagePathLevel1) %>% 
+  summarise(pageviews = sum(pageviews)) %>% 
+  filter(pageviews>10) %>% 
+  arrange(pageviews) 
 reactable(IncludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
 ### By URL Excludes Internal Web Traffic
 
+
+
+/search
+
+
 ```{r}
-ExcludeInternal_URL <- ExcludeInternal  %>% group_by(pagePathLevel1) %>% summarise(pageviews = sum(pageviews)) %>% arrange(pageviews) 
+ExcludeInternal_URL <- ExcludeInternal  %>% 
+   
+group_by(pagePathLevel1) %>% 
+  summarise(pageviews = sum(pageviews)) %>% 
+  filter(pageviews>10)%>% arrange(pageviews) 
 reactable(ExcludeInternal_URL, showPageInfo = FALSE, defaultPageSize = 10, filterable = T, sortable = T)
 ```
 
