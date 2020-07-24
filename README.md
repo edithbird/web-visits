@@ -3,7 +3,7 @@ Christine Iyer 7/23/20 10:59
 Christine Iyer
 Christine Iyer11:00
 Changed status to IN REVIEW
-
+---
 
 Robin McGlauflin
 Robin McGlaufli 7/24/29 08:17
@@ -15,6 +15,7 @@ First, there is a duplicate path listed in this truncated list (/eng/what-expect
 Another issue is that the report suggests that /eng/ba-english had only one pageview, which is misleading (it's a fairly high-trafficked page). I suspect there may be additional entry in the full results set for /eng/ba-english with a couple of thousand pageviews.
 
 To prevent duplicate paths in the merged results, be sure to start with the CMS data, then do a left join on the URL Alias column in the CMS data with the Page Path column in the GA data. I think that will provide more accurate results.
+---
 
 Christine Iyer
 Christine Iyer 7/24/29 08:35
