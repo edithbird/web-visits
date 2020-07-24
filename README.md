@@ -1,7 +1,12 @@
-# web-visits
-
+Christine Iyer 7/23/20 10:59 
 @Tracy M. St Pierre @Robin McGlauflin @Andrea Tripp Attached here is a report on the results of the test merge of Robin's CM data and GA traffic data. Basically, the merge was successful and simple. The report contains the English Dept subsites with fewer than 100 pageviews since 3/1/19. We can proceed when you wish.
+Christine Iyer
+Christine Iyer11:00
+Changed status to IN REVIEW
 
+
+Robin McGlauflin
+Robin McGlaufli 7/24/29 08:17
 @Christine Iyer
 Chris, I spotted a couple of issues in the test results.
 
@@ -11,10 +16,11 @@ Another issue is that the report suggests that /eng/ba-english had only one page
 
 To prevent duplicate paths in the merged results, be sure to start with the CMS data, then do a left join on the URL Alias column in the CMS data with the Page Path column in the GA data. I think that will provide more accurate results.
 
-Christine Iyer08:35
+Christine Iyer
+Christine Iyer 7/24/29 08:35
 @Robin McGlauflin Thanks so much for the feedback. I'll go back through and see what I come up with. I had to do a merge because left_join was not giving results. But I'm happy stive to get this exactly right.
-EDIT
-09:03
-@Robin McGlauflin The left_join worked...I forgot I needed common field to be the first column. This is simpler than I thought. Thanks.
 
+Christine Iyer
+Christine Iyer 7/24/29 09:03
+@Robin McGlauflin The left_join worked...I forgot I needed common field to be the first column. This is simpler than I thought. Thanks.
 
