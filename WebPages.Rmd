@@ -59,29 +59,38 @@ English <- read.csv("C:/Users/christine.iyer/Box/WebVisits/Data/EngExample.csv",
 ```
 
 ```{r rename url for common fields}
-English <- English %>% rename(URL = URL.ALIAS, Page_Title = PAGE.TITLE)
-IncludeInternal <- IncludeInternal %>% rename(URL = pagePath, Page_Title = pageTitle)
+English <- English %>% rename(URL = URL.ALIAS, Page_Title = PAGE.TITLE) %>% select(URL)
+IncludeInternal <- IncludeInternal %>% rename(URL = pagePath, Page_Title = pageTitle, rowNumber = X) %>% select(URL, pageviews)
 ```
 
 ```{r inspect}
 
 #ENG_IncludeInternal <- IncludeInternal %>% filter(URL == str_subset(URL,"^/eng/*")) %>% arrange(Page_Title) %>% select(Page_Title, URL, pageviews)
-English <- English %>% arrange(Page_Title)%>% select(Page_Title, URL)
-
+#English <- English %>% arrange(Page_Title)%>% select(Page_Title, URL)
+new <- left_join(English, IncludeInternal)
+# kable(new, caption = "Findings: Test Merge CM Data: English Sites with fewer than 100 pageviews since 3/1/2019 ")%>% 
+#   kable_styling("latex" , latex_options = c("repeat_header", "scale_down")) %>% 
+#   landscape()
 ```
 
 
+### Findings
 ```{r join}
-new <- merge(IncludeInternal,English, by="URL") 
+#new <- merge(IncludeInternal,English, by="URL")
 
-kable(new %>% 
-        arrange(pageviews) %>% 
-        mutate(Row_Number = seq.int(nrow(new))) %>% 
-        select(Row_Number, pageviews,Page_Title.y,URL) %>% 
-        filter(pageviews < 100), caption = "Findings: Test Merge CM Data: English Sites with fewer than 100 pageviews since 3/1/2019 ",) %>% 
-  kable_styling("latex" , latex_options = c("repeat_header", "scale_down")) %>% 
-  landscape()
+new1 <- new %>% 
+  
+  arrange(desc(pageviews)) 
+  
+
 ```
+
+
+```{r}
+kable(new1, "latex", longtable = T, booktabs = T, caption = "Test Merge CM Data: English Sites with fewer than 100 pageviews since 3/1/2019 ") %>%
+kable_styling(latex_options = c("repeat_header"))
+```
+
 
 
 __Process__
